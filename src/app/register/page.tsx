@@ -161,7 +161,7 @@ export default function RegistrationForm() {
         }
       });
 
-      const response = await fetch("https://itp-secondyear.vercel.app/api/v1/students/newregestration", {
+      const response = await fetch("https://itp-secondyear.vercel.app/api/v1/students/closed", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
