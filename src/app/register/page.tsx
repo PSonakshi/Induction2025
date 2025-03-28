@@ -40,7 +40,7 @@ const BRANCHES = [
   "Electrical Engineering",
   "Electrical and Electronics Engineering",
   "Electronics and Telecommunication Engineering",
-  "Information Technology",
+  "CSE AI/ML",
   "Mechanical Engineering",
   "Metallurgy and Materials Engineering",
   "Production Engineering"
@@ -79,21 +79,6 @@ const formSchema = z.object({
     { message: "Invalid GitHub URL." }
   ),
 
-  projectLink1: z.string().regex(
-    /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\/?.*$/,
-    { message: "Invalid project link." }
-  ).optional().or(z.literal("")),
-
-  projectLink2: z.string().regex(
-    /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\/?.*$/,
-    { message: "Invalid project link." }
-  ).optional().or(z.literal("")),
-
-  resumeLink: z.string().regex(
-    /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\/?.*$/,
-    { message: "Invalid resume link." }
-  ).optional().or(z.literal("")),
-
 }).refine((data) => data.primaryDomain !== data.secondaryDomain, {
   message: "Primary and secondary domains must be different",
   path: ["secondaryDomain"],
@@ -126,10 +111,7 @@ export default function RegistrationForm() {
       whatsappNo: "",
       primaryDomain: "",
       secondaryDomain: "",
-      githubUrl: "",
-      projectLink1: "",
-      projectLink2: "",
-      resumeLink: "",
+      githubUrl: ""
     },
     mode: "onBlur",
   });
@@ -184,7 +166,7 @@ export default function RegistrationForm() {
         });
         form.reset();
         setAvailableSecondaryDomains(DOMAINS);
-        router.push("https://chat.whatsapp.com/Ey8JkhYMswpLYr5PKpkV1I");
+        router.push("https://discord.gg/wR5q2nGz");
       } else {
         toast.error(`Failed to register: ${result.message || 'Unknown error'}`, {
           position: "top-right",
@@ -443,48 +425,7 @@ export default function RegistrationForm() {
               )}
             />
 
-            {/* Project Links */}
-            <FormField
-              control={form.control}
-              name="projectLink1"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Project Link 1 (optional)</FormLabel>
-                  <FormControl>
-                    <Input className="placeholder:text-white text-white p-6" placeholder="Enter your Project Link" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="projectLink2"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Project Link 2 (optional)</FormLabel>
-                  <FormControl>
-                    <Input className="placeholder:text-white text-white p-6" placeholder="Enter your Project Link" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="resumeLink"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Resume Link (optional)</FormLabel>
-                  <FormControl>
-                    <Input className="placeholder:text-white text-white p-6" placeholder="Enter your Resume Link" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
+          
               <Button type="submit" disabled={isSubmitting} className="w-full bg-green-600 hover:bg-green-700">
                 {isSubmitting ? <CgSpinner className="animate-spin" /> : "Register"}
               </Button>

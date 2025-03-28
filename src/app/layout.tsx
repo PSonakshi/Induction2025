@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Induction 2.0",
-  description: "Induction program for second year students only.",
+  title: "Induction",
+  description: "Induction program for first year students only.",
   icons: {
     icon: "/favicon_io/favicon.ico",
   },
