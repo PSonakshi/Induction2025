@@ -15,6 +15,7 @@ export default function Home() {
 
   const [status, setStatus] = useState<"before" | "live" | "ended">("before");
  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [floatingObjects, setFloatingObjects] = useState<any[]>([]);
 
   useEffect(() => {
