@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -78,7 +78,6 @@ const formSchema = z.object({
     /^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9_-]+(\/[a-zA-Z0-9._-]+\/?)?$/,
     { message: "Invalid GitHub URL." }
   ),
-
 }).refine((data) => data.primaryDomain !== data.secondaryDomain, {
   message: "Primary and secondary domains must be different",
   path: ["secondaryDomain"],
@@ -200,7 +199,7 @@ export default function RegistrationForm() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-auto bg-black relative overflow-x-hidden">
+    <div className="flex flex-col items-center justify-center h-auto bg-gradient-to-r from-black to-[#32ca44] relative overflow-x-hidden">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -392,7 +391,7 @@ export default function RegistrationForm() {
                     <FormLabel>Secondary Domain</FormLabel>
                     <FormControl>
                       <Select onValueChange={field.onChange} value={field.value}>
-                        <SelectTrigger className="py-6">
+                        <SelectTrigger className="p-6">
                           <SelectValue placeholder="Secondary domain" />
                         </SelectTrigger>
                         <SelectContent>
@@ -416,19 +415,18 @@ export default function RegistrationForm() {
               name="githubUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Github URL</FormLabel>
+                  <FormLabel>GitHub URL</FormLabel>
                   <FormControl>
-                    <Input className="placeholder:text-white text-white p-6" placeholder="Enter your Github URL" {...field} />
+                    <Input className="placeholder:text-white text-white p-6" placeholder="Enter your GitHub URL" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-          
-              <Button type="submit" disabled={isSubmitting} className="w-full bg-green-600 hover:bg-green-700">
-                {isSubmitting ? <CgSpinner className="animate-spin" /> : "Register"}
-              </Button>
+            <Button type="submit" disabled={isSubmitting} className="w-full bg-green-600 hover:bg-green-700">
+              {isSubmitting ? <CgSpinner className="animate-spin" /> : "Register"}
+            </Button>
           </form>
         </Form>
       </div>
